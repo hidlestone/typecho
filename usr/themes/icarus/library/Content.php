@@ -1,5 +1,10 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Widget\Helper\Form\Element\Text as TypechoText;
+use Typecho\Widget\Helper\Form\Element\Textarea as TypechoTextarea;
+use Typecho\Common;
+
 class Icarus_Content
 {
     private static $fieldsInfoOutputed = FALSE;
@@ -185,7 +190,7 @@ class Icarus_Content
             $truncateRequired = FALSE;
         } else {
             // original excerpt process
-
+            $plugged = false;
             $content = $post->pluginHandle('Widget_Abstract_Contents')
                             ->trigger($plugged)
                             ->excerpt($post->text, $post);
@@ -217,7 +222,7 @@ class Icarus_Content
         if (!$preserveTags || $truncateRequired) {
             $excerpt = strip_tags($excerpt);
             if ($truncateRequired) {
-                $excerpt = Typecho_Common::subStr($excerpt, 0, $truncateLength, '...');
+                $excerpt = Common::subStr($excerpt, 0, $truncateLength, '...');
             }
         }
 
@@ -238,7 +243,7 @@ class Icarus_Content
 
     public static function fieldsConfig($form)
     {
-        $thumbnail = new Typecho_Widget_Helper_Form_Element_Text(
+        $thumbnail = new TypechoText(
             'thumbnail', NULL, NULL, 
             _IcT('fields.thumbnail.title'), 
             _IcT('fields.thumbnail.desc')
@@ -246,7 +251,7 @@ class Icarus_Content
         $thumbnail->input->class = 'w-100';
         $form->addItem($thumbnail);
 
-        $excerpt = new Typecho_Widget_Helper_Form_Element_Textarea(
+        $excerpt = new TypechoTextarea(
             'custom_excerpt', NULL, NULL, 
             _IcT('fields.excerpt.title'), 
             _IcT('fields.excerpt.desc')
