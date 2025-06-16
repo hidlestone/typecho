@@ -221,7 +221,7 @@ class Icarus_Module_Single
             </div>
         </div>
     <?php
-        Icarus_Module::show('Donate');
+        // Icarus_Module::show('Donate');
         Icarus_Module::show('Comments', $this->_post);
     }
 
@@ -253,12 +253,13 @@ class Icarus_Module_Single
             </div>
         </div>
         <?php
-        Icarus_Module::show('Donate');
+        // Icarus_Module::show('Donate');
 
         if ($isPost):
             $prevPost = $this->getPrev();
             $nextPost = $this->getNext();
-            if ($prevPost || $nextPost):
+            // if ($prevPost || $nextPost):
+            if (false):
         ?>
                 <div class="card card-transparent">
                     <div class="level post-navigation is-flex-wrap is-mobile">
