@@ -1,5 +1,9 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Widget;
+use Typecho\Db;
+
 class Icarus_Module_Single
 {
     private $_post;
@@ -11,11 +15,11 @@ class Icarus_Module_Single
 
     private function getPrev()
     {
-        $content = Typecho_Db::get()->fetchRow($this->_post->select()->where('table.contents.created < ?', $this->_post->created)
+        $content = Db::get()->fetchRow($this->_post->select()->where('table.contents.created < ?', $this->_post->created)
             ->where('table.contents.status = ?', 'publish')
             ->where('table.contents.type = ?', $this->_post->type)
             ->where("table.contents.password IS NULL OR table.contents.password = ''")
-            ->order('table.contents.created', Typecho_Db::SORT_DESC)
+            ->order('table.contents.created', Db::SORT_DESC)
             ->limit(1));
         if ($content) 
             return $this->_post->filter($content);
@@ -25,12 +29,12 @@ class Icarus_Module_Single
 
     private function getNext()
     {
-        $content = Typecho_Db::get()->fetchRow($this->_post->select()->where('table.contents.created > ? AND table.contents.created < ?',
+        $content = Db::get()->fetchRow($this->_post->select()->where('table.contents.created > ? AND table.contents.created < ?',
             $this->_post->created, Icarus_Util::$options->time)
             ->where('table.contents.status = ?', 'publish')
             ->where('table.contents.type = ?', $this->_post->type)
             ->where("table.contents.password IS NULL OR table.contents.password = ''")
-            ->order('table.contents.created', Typecho_Db::SORT_ASC)
+            ->order('table.contents.created', Db::SORT_ASC)
             ->limit(1));
         if ($content) 
             return $this->_post->filter($content);
@@ -73,7 +77,7 @@ class Icarus_Module_Single
     <div class="level-item">
         <?php 
         $category = $this->_post->categories[0];
-        $directory = Typecho_Widget::widget('Widget_Metas_Category_List')->getAllParents($category['mid']);
+        $directory = Widget::widget('Widget_Metas_Category_List')->getAllParents($category['mid']);
         $directory[] = $category;
 
         if ($directory) {
@@ -213,6 +217,7 @@ class Icarus_Module_Single
 
     public function doOutputPost()
     {
+        $isPost = $this->_post->is('post');
 ?>
 <div class="card">
     <?php $this->printThumbnail(TRUE); ?>

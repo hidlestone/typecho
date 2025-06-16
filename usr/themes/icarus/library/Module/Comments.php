@@ -1,5 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Widget;
+
 class Icarus_Module_Comments
 {
     public static function config($form)
@@ -41,9 +44,9 @@ class Icarus_Module_Comments
 
     private static function outputInternal($widget)
     {
-        $widget->comments()->to($comments);
+        $comments = $widget->comments();
         $options = Icarus_Util::$options;
-        $user = Typecho_Widget::widget('Widget_User');
+        $user = Widget::widget('Widget_User');
         if ($comments->have() || $widget->allow('comment')):
 ?>
 <div class="card">

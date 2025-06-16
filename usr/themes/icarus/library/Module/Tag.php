@@ -1,5 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Widget;
+
 class Icarus_Module_Tag
 {
     public static function config($form)
@@ -19,7 +22,7 @@ class Icarus_Module_Tag
 
     public static function output($showAll = FALSE)
     {
-        $tags = Typecho_Widget::widget(
+        $tags = Widget::widget(
             'Widget_Metas_Tag_Cloud', 
             $showAll ? NULL : ('limit=' . self::getLimit())
         );

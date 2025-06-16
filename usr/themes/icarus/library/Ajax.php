@@ -1,13 +1,17 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+use Utils\Helper;
+use Typecho\Request;
+use Typecho\Widget;
+
 class Icarus_Ajax
 {
     public static function handle()
     {
         $security = Helper::security();
-        $request = Typecho_Request::getInstance();
-        $notice = Typecho_Widget::widget('Widget_Notice');
+        $request = Request::getInstance();
+        $notice = Widget::widget('Widget_Notice');
 
         if ($request->isPost() && isset($request->icarus_action))
         {

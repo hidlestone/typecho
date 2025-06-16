@@ -1,8 +1,11 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Widget;
+
 $this->need('component/header.php');
 
-Typecho_Widget::widget('Widget_Contents_Post_Recent', 'pageSize=100000')->to($archives); 
+Widget::widget('Widget_Contents_Post_Recent', 'pageSize=100000')->to($archives); 
 $year = -1;
 $yearCount = 0;
 
@@ -43,7 +46,7 @@ if ($year_tmp != $year):
                                 <div class="level-item is-size-7 is-uppercase">
                                 <?php 
                                 $category = $archives->categories[0];
-                                $directory = Typecho_Widget::widget('Widget_Metas_Category_List')->getAllParents($category['mid']);
+                                $directory = Widget::widget('Widget_Metas_Category_List')->getAllParents($category['mid']);
                                 $directory[] = $category;
 
                                 if ($directory) {

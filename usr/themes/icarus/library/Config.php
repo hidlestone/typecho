@@ -2,6 +2,10 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 require __ICARUS_ROOT__ . 'library/FormHelper.php';
 
+use Typecho\Widget\Helper\Layout;
+use Typecho\Widget;
+use Typecho\Common;
+
 class Icarus_Config
 {
     private $_form;
@@ -13,7 +17,7 @@ class Icarus_Config
     {
         if (!self::cfgVersionMatch())
         {
-            Typecho_Widget::widget('Widget_Notice')->set(sprintf(_IcT('setting.cfg_version_notice'), __ICARUS_VERSION__), 'notice');
+            Widget::widget('Widget_Notice')->set(sprintf(_IcT('setting.cfg_version_notice'), __ICARUS_VERSION__), 'notice');
         }
 
         $verInfo = new Icarus_Form_VersionField();
@@ -25,7 +29,7 @@ class Icarus_Config
         $form->html(sprintf(
             _IcT('setting.general.desc'), 
             __TYPECHO_THEME_DIR__ . '/' . Icarus_Util::$options->theme, // theme dir
-            Typecho_Common::url('write-page.php#icarus', Icarus_Util::$options->adminUrl) // create page link
+            Common::url('write-page.php#icarus', Icarus_Util::$options->adminUrl) // create page link
         ));
 
         $form->packInput('General/install_time', date('Y-m-d', Icarus_Util::getSiteInstallTime()), 'w-20');
@@ -76,14 +80,14 @@ class Icarus_Config
 
     public function html($html)
     {
-        $layout = new Typecho_Widget_Helper_Layout(NULL);
+        $layout = new Layout('div');
         $layout->html($html);
         $this->_form->addItem($layout);
     }
 
     public function showDesc($content)
     {
-        $layout = new Typecho_Widget_Helper_Layout('div');
+        $layout = new Layout('div');
         $layout->html($content);
         $layout->class = 'icarus-description';
         $this->_form->addItem($layout);
@@ -100,7 +104,7 @@ class Icarus_Config
 
         $this->_titleList[] = array($title, $id);
 
-        $layout = new Typecho_Widget_Helper_Layout('h2');
+        $layout = new Layout('h2');
         $layout->id = $id;
         $layout->class = 'icarus-config-title';
         $layout->html($title);
@@ -204,35 +208,35 @@ class Icarus_Config
 
     public function toc()
     {
-        $container = new Typecho_Widget_Helper_Layout('div');
+        $container = new Layout('div');
         $container->id = 'icarus-config-toc';
         $container->class = 'col-mb-12 col-tb-2 hide';
 
-        $title = new Typecho_Widget_Helper_Layout('h2');
+        $title = new Layout('h2');
         $title->html(_IcT('general.catalog'));
         $container->addItem($title);
         
-        $button = new Typecho_Widget_Helper_Layout('button');
+        $button = new Layout('button');
         $button->type = 'submit';
         $button->class = 'btn primary btn-xs';
         $button->id = 'icarus-save-btn';
         $button->html(_t('保存设置'));
         $container->addItem($button);
 
-        $ul = new Typecho_Widget_Helper_Layout('ul');
+        $ul = new Layout('ul');
         $container->addItem($ul);
 
         foreach ($this->_titleList as $title)
         {
-            $li = new Typecho_Widget_Helper_Layout('li');
-            $a = new Typecho_Widget_Helper_Layout('a');
+            $li = new Layout('li');
+            $a = new Layout('a');
             $a->href = '#' . $title[1];
             $a->html($title[0]);
             $li->addItem($a);
             $ul->addItem($li);
         }
 
-        $script = new Typecho_Widget_Helper_Layout('script');
+        $script = new Layout('script');
         $script->html(self::CONFIG_SCRIPT);
 
         $this->_form->addItem($container);

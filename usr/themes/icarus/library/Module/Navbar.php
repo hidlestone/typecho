@@ -1,5 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Request;
+
 class Icarus_Module_Navbar
 {
     public static function config($form)
@@ -29,7 +32,7 @@ class Icarus_Module_Navbar
 
     private static function isCurLink($uri)
     {
-        return Typecho_Request::getInstance()->getRequestUri() == $uri;
+        return Request::getInstance()->getRequestUri() == $uri;
     }
 
     public static function output()

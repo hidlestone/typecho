@@ -1,5 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Common;
+
 class Icarus_Assets
 {
     private static $_assetsBaseUrl;
@@ -66,7 +69,7 @@ class Icarus_Assets
     {
         self::$_assetsBaseUrl = Icarus_Config::get(
             'assets_theme_assets_base',
-            Typecho_Common::url('assets', Icarus_Util::$options->themeUrl)
+            Common::url('assets', Icarus_Util::$options->themeUrl)
         );  
 
         self::loadAssetsCDNConfig(
@@ -110,7 +113,7 @@ class Icarus_Assets
     {
         if (Icarus_Util::isUrl($path))
             return $path;
-        return Typecho_Common::url($path, self::$_assetsBaseUrl);
+        return Common::url($path, self::$_assetsBaseUrl);
     }
 
     public static function printCssTag($cssUrl)

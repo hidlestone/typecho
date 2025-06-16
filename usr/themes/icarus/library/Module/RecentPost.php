@@ -1,5 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Widget;
+
 class Icarus_Module_RecentPost
 {
     public static function config($form)
@@ -20,7 +23,7 @@ class Icarus_Module_RecentPost
 
     public static function output()
     {
-        $posts = Typecho_Widget::widget('Widget_Contents_Post_Recent', 'pageSize=' . self::getLimit());
+        $posts = Widget::widget('Widget_Contents_Post_Recent', 'pageSize=' . self::getLimit());
         if ($posts->length == 0)
             return;
         $thumbnailEnabled = !!Icarus_Config::get('recent_post_thumbnail', true);
@@ -48,7 +51,7 @@ class Icarus_Module_RecentPost
             <p class="is-size-7 is-uppercase">
             <?php 
             $category = $posts->categories[0];
-            $directory = Typecho_Widget::widget('Widget_Metas_Category_List')->getAllParents($category['mid']);
+            $directory = Widget::widget('Widget_Metas_Category_List')->getAllParents($category['mid']);
             $directory[] = $category;
     
             if ($directory) {

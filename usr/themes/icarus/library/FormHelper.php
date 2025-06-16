@@ -1,9 +1,17 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-class Icarus_Form_Element_Text extends Typecho_Widget_Helper_Form_Element_Text
+use Typecho\Widget\Helper\Form\Element;
+use Typecho\Widget\Helper\Form\Element\Text as TypechoText;
+use Typecho\Widget\Helper\Form\Element\Textarea as TypechoTextarea;
+use Typecho\Widget\Helper\Form\Element\Radio as TypechoRadio;
+use Typecho\Widget\Helper\Form\Element\Checkbox as TypechoCheckbox;
+use Typecho\Widget\Helper\Form\Element\Hidden as TypechoHidden;
+use Utils\Helper;
+
+class Icarus_Form_Element_Text extends TypechoText
 {
-    public function value($value)
+    public function value($value): Element
     {
         if (!is_null($value))
             return parent::value($value);
@@ -12,9 +20,9 @@ class Icarus_Form_Element_Text extends Typecho_Widget_Helper_Form_Element_Text
     }
 }
 
-class Icarus_Form_Element_Textarea extends Typecho_Widget_Helper_Form_Element_Textarea
+class Icarus_Form_Element_Textarea extends TypechoTextarea
 {
-    public function value($value)
+    public function value($value): Element
     {
         if (!is_null($value))
             return parent::value($value);
@@ -23,9 +31,9 @@ class Icarus_Form_Element_Textarea extends Typecho_Widget_Helper_Form_Element_Te
     }
 }
 
-class Icarus_Form_Element_Radio extends Typecho_Widget_Helper_Form_Element_Radio
+class Icarus_Form_Element_Radio extends TypechoRadio
 {
-    public function value($value)
+    public function value($value): Element
     {
         if (!is_null($value))
             return parent::value($value);
@@ -34,28 +42,33 @@ class Icarus_Form_Element_Radio extends Typecho_Widget_Helper_Form_Element_Radio
     }
 }
 
-class Icarus_Form_Element_Checkbox extends Typecho_Widget_Helper_Form_Element_Checkbox
+class Icarus_Form_Element_Checkbox extends TypechoCheckbox
 {
 }
 
-class Icarus_Form_VersionField extends Typecho_Widget_Helper_Form_Element_Hidden
+class Icarus_Form_VersionField extends TypechoHidden
 {
     public function __construct()
     {
         parent::__construct(Icarus_Config::prefixKey('config_version'), NULL, __ICARUS_CFG_VERSION__);
     }
 
-    public function value($value)
+    public function value($value): Element
     {
         return parent::value(__ICARUS_CFG_VERSION__);
     }
 }
 
-class Icarus_Form_ConfigBackup extends Typecho_Widget_Helper_Form_Element
+class Icarus_Form_ConfigBackup extends Element
 {
     public function __construct()
     {
         parent::__construct('icarus_backup', NULL, NULL, '主题设置备份', NULL);
+    }
+
+    protected function inputValue($value)
+    {
+        // 可根据需要实现
     }
 
     /**
@@ -66,16 +79,16 @@ class Icarus_Form_ConfigBackup extends Typecho_Widget_Helper_Form_Element
      * @param array $options 选择项
      * @return Typecho_Widget_Helper_Layout
      */
-    public function input($name = NULL, array $options = NULL)
+    public function input(?string $name = null, ?array $options = null): ?\Typecho\Widget\Helper\Layout
     {
         $backupExist = intval(Icarus_Backup::exist());
         $security = Helper::security();
 
-        $backupStatusText = new Typecho_Widget_Helper_Layout('p');
+        $backupStatusText = new \Typecho\Widget\Helper\Layout('p');
         $backupStatusText->html(_IcT('setting.backup.status.' . $backupExist));
         $this->container($backupStatusText);
 
-        $saveBackupButton = new Typecho_Widget_Helper_Layout(
+        $saveBackupButton = new \Typecho\Widget\Helper\Layout(
             'button',
             array(
                 'class' => 'btn primary btn-xs icarus-backup-action',
@@ -86,7 +99,7 @@ class Icarus_Form_ConfigBackup extends Typecho_Widget_Helper_Form_Element
         $this->container($saveBackupButton);
 
         if ($backupExist) {
-            $deleteBackupButton = new Typecho_Widget_Helper_Layout(
+            $deleteBackupButton = new \Typecho\Widget\Helper\Layout(
                 'button',
                 array(
                     'class' => 'btn btn-warn btn-xs icarus-backup-action',
@@ -96,7 +109,7 @@ class Icarus_Form_ConfigBackup extends Typecho_Widget_Helper_Form_Element
             $deleteBackupButton->html(_IcT('setting.backup.action.delete'));
             $this->container($deleteBackupButton);
 
-            $restoreBackupButton = new Typecho_Widget_Helper_Layout(
+            $restoreBackupButton = new \Typecho\Widget\Helper\Layout(
                 'button',
                 array(
                     'class' => 'btn btn-xs icarus-backup-action',
@@ -107,7 +120,7 @@ class Icarus_Form_ConfigBackup extends Typecho_Widget_Helper_Form_Element
             $this->container($restoreBackupButton);
         }
 
-        $script = new Typecho_Widget_Helper_Layout('script');
+        $script = new \Typecho\Widget\Helper\Layout('script');
         $script->html(self::BACKUP_SCRIPT);
         $this->container($script);
             

@@ -1,5 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Widget;
+
 class Icarus_Module_Archive
 {
     public static function config($form)
@@ -30,7 +33,7 @@ $tpl = <<<TPL
     </a>
 </li>
 TPL;
-Typecho_Widget::widget(
+Widget::widget(
     'Widget_Contents_Post_Date', 
     array(
         'type' => 'month',

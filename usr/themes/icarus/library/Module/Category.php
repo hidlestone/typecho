@@ -1,5 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+use Typecho\Widget;
+
 class Icarus_Module_Category
 {
     public static function config($form)
@@ -23,7 +26,7 @@ class Icarus_Module_Category
             </h3>
         <?php endif; ?>
 <?php 
-Typecho_Widget::widget('Widget_Metas_Category_List')->listCategories('wrapTag=ul&wrapClass=menu-list');
+Widget::widget('Widget_Metas_Category_List')->listCategories('wrapTag=ul&wrapClass=menu-list');
 ?>        
         </div>
     </div>

@@ -1,6 +1,10 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+use Typecho\Widget;
+use Typecho\Common;
+use Typecho\Router;
+
 class Icarus_Util
 {
     public static $options;
@@ -8,13 +12,13 @@ class Icarus_Util
 
     public static function init($typechoWidget)
     {
-        Typecho_Widget::widget('Widget_Options')->to(self::$options);
+        Widget::widget('Widget_Options')->to(self::$options);
         self::$widget = $typechoWidget;
     }
 
     public static function stat()
     {
-        return Typecho_Widget::widget('Widget_Stat');
+        return Widget::widget('Widget_Stat');
     }
 
     public static function strStartsWith($str, $startsWith)
@@ -120,7 +124,7 @@ class Icarus_Util
      * 使用方法:
      * <code>
      * $input = '这是一段被截断的html文本<a href="#"';
-     * echo Typecho_Common::fixHtml($input);
+     * echo Common::fixHtml($input);
      * //output: 这是一段被截断的html文本
      * </code>
      * 
@@ -186,7 +190,7 @@ class Icarus_Util
 
     public static function urlFor($type, $param)
     {
-        return Typecho_Common::url(Typecho_Router::url($type, $param), self::$options->index);
+        return Common::url(Router::url($type, $param), self::$options->index);
     }
 
     public static function jsonResponse($data)

@@ -1,6 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+use Typecho\Widget;
+
 $this->need('component/header.php');
 ?>
 <div class="card">
@@ -28,7 +30,7 @@ switch ($this->getArchiveType())
         );
         if ($curSlug = $this->getArchiveSlug())
         {
-            $categories = Typecho_Widget::widget('Widget_Metas_Category_List');
+            $categories = Widget::widget('Widget_Metas_Category_List');
             $categories->execute();
             $categoryFound = FALSE;
             while ($categories->next())
