@@ -41,7 +41,7 @@ class Icarus_Module_Profile
             <div class="level-item has-text-centered">
                 <div>
                     <img class="image is-128x128 has-mb-6 profile-avatar" style="height:60px;width:60px;border-radius: 50%;"
-                        onclick="javascript:location.href='http://wordplay.work/index.php/fanfou.html'"
+                        onclick="javascript:location.href='/index.php/fanfou.html'"
                         src="<?php self::printAvatarUrl(); ?>" 
                         alt="<?php echo Icarus_Config::get('profile_author'); ?>" />
                     <?php if (Icarus_Config::tryGet('profile_author', $profileAuthor)): ?>
