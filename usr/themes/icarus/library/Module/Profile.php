@@ -97,8 +97,8 @@ class Icarus_Module_Profile
         </nav>
         <?php if (Icarus_Config::tryGet('profile_follow_link', $profileFollowLink)): ?>
         <div class="level">
-            <a class="level-item button is-link is-rounded" href="<?php echo $profileFollowLink; ?>">
-                <?php _IcTp('profile.follow'); ?></a>
+            <!-- <a class="level-item button is-link is-rounded" href="<?php echo $profileFollowLink; ?>">
+                <?php _IcTp('profile.follow'); ?></a> -->
         </div>
         <?php endif; ?>
         <?php $socialLinks = self::getSocialLinks(); ?>

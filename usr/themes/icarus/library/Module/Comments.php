@@ -52,7 +52,7 @@ class Icarus_Module_Comments
 <div class="card">
     <div class="card-content comment-container">
         <div class="field is-grouped">
-            <div class="control"><h3 class="title is-5 has-text-weight-normal"><?php _IcTp('general.comments'); ?></h3></div>
+            <div class="control"><h3 class="title is-5 has-text-weight-normal"><?php echo (isset($widget) && $widget->slug === 'fanfou') ? _IcTp('general.message') : _IcTp('general.comments'); ?></h3></div>
             <div class="control"><span class="tag has-text-weight-normal"><?php $widget->commentsNum(_t('暂无'), _t('1 条'), _t('%d 条')); ?></span></div>
         </div>
         <div class="comment-list">
