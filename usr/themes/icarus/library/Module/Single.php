@@ -221,7 +221,9 @@ class Icarus_Module_Single
             </div>
         </div>
     <?php
-        // Icarus_Module::show('Donate');
+        if ($this->_post->slug == 'about') {
+            Icarus_Module::show('Donate');
+        }
         Icarus_Module::show('Comments', $this->_post);
     }
 

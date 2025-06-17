@@ -17,6 +17,7 @@ class Icarus_Module
         'Donate',
         'Paginator',
         'FanfouInput'
+        // 'FanfouItems'
     );
     private static $_moduleLoaded = array();
 

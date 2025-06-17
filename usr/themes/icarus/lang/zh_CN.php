@@ -16,6 +16,7 @@ return array(
         'search' => '搜索',
         'comments' => '评论',
         'logout' => '登出',
+        'message' => '消息',
     ),
     'empty' => array(
         'category' => array(
