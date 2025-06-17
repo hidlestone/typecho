@@ -14,13 +14,13 @@ class Icarus_Module_Donate
                 <div class="columns is-centered">
                     <div class="column is-narrow has-text-centered">
                         <figure class="image " style="margin:0 auto 0.5rem;">
-                            <img src="<?php echo $wechatImg; ?>" style="max-width:200px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#fff;" />
+                            <img src="<?php echo $wechatImg; ?>" style="max-width:120px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#fff;" />
                         </figure>
 
                     </div>
                     <div class="column is-narrow has-text-centered">
                         <figure class="image " style="margin:0 auto 0.5rem;">
-                            <img src="<?php echo $alipayImg; ?>"  style="max-width:200px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#fff;" />
+                            <img src="<?php echo $alipayImg; ?>"  style="max-width:120px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#fff;" />
                         </figure>
                     </div>
                 </div>

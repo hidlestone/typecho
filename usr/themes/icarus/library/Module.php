@@ -15,7 +15,8 @@ class Icarus_Module
         'Search',
         'Comments',
         'Donate',
-        'Paginator'
+        'Paginator',
+        'FanfouInput'
     );
     private static $_moduleLoaded = array();
 
