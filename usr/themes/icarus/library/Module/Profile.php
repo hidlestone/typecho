@@ -70,7 +70,8 @@ class Icarus_Module_Profile
                         <?php _IcTp('general.posts'); ?>
                     </p>
                     <p class="title has-text-weight-normal">
-                        <?php echo Icarus_Util::stat()->publishedPostsNum(); ?>
+                        <a href="/index.php/archives.html" style="color: black;"><?php echo Icarus_Util::stat()->publishedPostsNum(); ?></a>
+                        <!-- <?php echo Icarus_Util::stat()->publishedPostsNum(); ?> -->
                     </p>
                 </div>
             </div>
@@ -80,7 +81,8 @@ class Icarus_Module_Profile
                         <?php _IcTp('general.categories'); ?>
                     </p>
                     <p class="title has-text-weight-normal">
-                        <?php echo Icarus_Util::stat()->categoriesNum(); ?>
+                        <a href="/index.php/categories.html" style="color: black;"><?php echo Icarus_Util::stat()->categoriesNum(); ?></a>
+                        <!-- <?php echo Icarus_Util::stat()->categoriesNum(); ?> -->
                     </p>
                 </div>
             </div>

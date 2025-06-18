@@ -23,7 +23,7 @@ class Icarus_Module_RecentPost
 
     public static function output()
     {
-        $posts = Widget::widget('Widget_Contents_Post_Recent', 'pageSize=' . self::getLimit());
+        $posts = Widget::widget('Widget_Contents_Post_Recent@recent', 'pageSize=' . self::getLimit());
         if ($posts->length == 0)
             return;
         $thumbnailEnabled = !!Icarus_Config::get('recent_post_thumbnail', true);
